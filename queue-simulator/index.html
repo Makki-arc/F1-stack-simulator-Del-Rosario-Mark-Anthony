@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stack Simulator</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1>Stack Simulator (LIFO)</h1>
+  <div class="controls">
+    <input type="text" id="inputVal" placeholder="Enter value">
+    <button id="pushBtn">Push</button>
+    <button id="popBtn">Pop</button>
+    <button id="peekBtn">Peek</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+  <p id="message"></p>
+  <div class="main">
+    <div class="stack-area">
+      <h3>Stack <span class="label">TOP ^</span></h3>
+      <div id="stackDisplay"></div>
+    </div>
+    <div class="deleted-area">
+      <h3>Deleted Area</h3>
+      <div id="deletedDisplay"></div>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

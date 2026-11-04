@@ -1,52 +1,27 @@
 $(document).ready(function(){
-  let stack = [];
-  
+  let queue = [];
   function render(){
-    $("#stackDisplay").empty();
-    stack.forEach(val => {
-      $("#stackDisplay").append(`<div class="block">${val}</div>`);
+    $("#queueDisplay").empty();
+    queue.forEach((val,index)=>{
+      let cls = "block";
+      if(index===0) cls+=" front";
+      $("#queueDisplay").append(`<div class="${cls}">${val}</div>`);
     });
   }
-
-  $("#pushBtn").click(function(){
+  $("#enqBtn").click(function(){
     let val = $("#inputVal").val().trim();
-    if(val === ""){
-      $("#message").text("Blank input not allowed!");
-      return;
-    }
-    $("#message").text("");
-    stack.push(val);
-    render();
-    $("#inputVal").val("");
+    if(val===""){ $("#message").text("Blank input not allowed!"); return; }
+    $("#message").text(""); queue.push(val); render(); $("#inputVal").val("");
   });
-
-  $("#popBtn").click(function(){
-    if(stack.length === 0){
-      $("#message").text("Stack is empty! Cannot Pop.");
-      return;
-    }
-    $("#message").text("");
-    let removed = stack.pop();
-    render();
-    $("#deletedDisplay").html(`<div class="block">${removed}</div>`);
-    $(".block").removeClass("peek");
+  $("#deqBtn").click(function(){
+    if(queue.length===0){ $("#message").text("Queue is empty! Cannot Dequeue."); return; }
+    $("#message").text(""); let removed = queue.shift();
+    render(); $("#deletedDisplay").html(`<div class="block">${removed}</div>`);
   });
-
   $("#peekBtn").click(function(){
-    if(stack.length === 0){
-      $("#message").text("Stack is empty! Nothing to Peek.");
-      return;
-    }
-    $("#message").text("");
-    $(".block").removeClass("peek");
-    $("#stackDisplay .block:last").addClass("peek");
+    if(queue.length===0){ $("#message").text("Queue is empty! Nothing to Peek."); return; }
+    $("#message").text(""); $(".block").removeClass("peek");
+    $("#queueDisplay .block:first").addClass("peek");
   });
-
-  $("#clearBtn").click(function(){
-    stack = [];
-    render();
-    $("#deletedDisplay").empty();
-    $("#message").text("Stack cleared.");
-    $("#inputVal").val("");
-  });
+  $("#clearBtn").click(function(){ queue=[]; render(); $("#deletedDisplay").empty(); $("#message").text("Queue cleared."); });
 });
